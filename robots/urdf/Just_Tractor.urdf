@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<robot name="TractorTrailer_0">
+
+<!--               -->
+<!-- TRACTOR LINKS -->
+<!--               -->
+  <link name="Tractor_Body">
+    <visual>
+      <geometry>
+        <box size="2 3 0.25"/>
+      </geometry>
+      <origin rpy=" 0 0 0" xyz="0 0 0.25"/>
+    </visual>
+    <collision>
+      <origin rpy=" 0 0 0" xyz="0 0 0.25"/>
+      <geometry>
+        <box size="2 3 0.25"/>
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Tractor_Body">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <link name="Tractor_Weighted_Base">
+    <visual>
+      <geometry>
+        <box size="2 3 0.25"/>
+      </geometry>
+      <origin rpy=" 0 0 0" xyz="0 0 0.25"/>
+    </visual>
+    <collision>
+      <origin rpy=" 0 0 0" xyz="0 0 0.25"/>
+      <geometry>
+        <box size="2 3 0.25"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy=" 0 0 0" xyz="0 0 0.25"/>
+      <mass value="6500.0"/>
+      <inertia ixx="4908.85" ixy="0" ixz="0" iyy="2200.52" iyz="0" izz="7041.67"/>
+    </inertial>
+  </link>
+  <gazebo reference="Tractor_Weighted_Base">
+    <material>Gazebo/Blue</material>
+    <collision name="Tractor_front_driv_wheel">
+      <friction>
+        <torsional>
+          <coefficient>500</coefficient>
+          <use_patch_radius>false</use_patch_radius>    
+        </torsional>
+        <ode>
+          <mu>1.00</mu>
+          <mu2>1.00</mu2>
+        </ode>
+      </friction>
+    </collision> 
+  </gazebo>
+
+  <link name="Tractor_Cab">
+    <visual>
+      <geometry>
+        <box size="1 1 1"/>
+      </geometry>
+      <origin rpy=" 0 0 0" xyz="0 -1 0.25"/>
+    </visual>
+    <collision>
+      <origin rpy=" 0 0 0" xyz="0 -1 0.25"/>
+      <geometry>
+        <box size="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy=" 0 0 0" xyz="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.16667" ixy="0" ixz="0" iyy="0.16667" iyz="0" izz="0.16667"/>
+    </inertial>
+  </link>
+  <gazebo reference="Tractor_Cab">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <link name="Trailer_Hitch">
+    <visual>
+      <geometry>
+        <cylinder length="0.5" radius="0.1"/>
+      </geometry>
+      <origin rpy=" 0 0 0" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <origin rpy=" 0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.5" radius="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy=" 0 0 0" xyz="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.145833" ixy="0" ixz="0" iyy="0.145833" iyz="0" izz="0.125"/>
+    </inertial>
+  </link>
+  <gazebo reference="Trailer_Hitch">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  
+  <link name="Front_Axle">
+    <visual>
+      <geometry>
+        <cylinder length="2" radius="0.1"/>
+      </geometry>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="2" radius="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <gazebo reference="Front_Axle">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  
+  <link name="Tractor_front_driv_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+    </visual>
+    <collision>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="35"/>
+      <inertia ixx="2.45" ixy="0" ixz="0" iyy="2.45" iyz="0" izz="4.375"/>
+    </inertial>
+  </link>
+  <gazebo reference="Tractor_front_driv_wheel">
+    <material>Gazebo/White</material>
+    <collision name="Tractor_front_driv_wheel">
+      <friction>
+        <torsional>
+          <coefficient>500</coefficient>
+          <use_patch_radius>true</use_patch_radius>
+          <patch_radius>0.0254</patch_radius>       
+        </torsional>
+        <ode>
+          <mu>1.00</mu>
+          <mu2>1.00</mu2>
+        </ode>
+      </friction>
+    </collision> 
+  </gazebo>
+  
+  <link name="Tractor_front_pass_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+    </visual>
+  <collision>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="35"/>
+      <inertia ixx="2.45" ixy="0" ixz="0" iyy="2.45" iyz="0" izz="4.375"/>
+    </inertial>
+  </link>
+  <gazebo reference="Tractor_front_pass_wheel">
+    <material>Gazebo/White</material>
+    <collision name="Tractor_front_pass_wheel">
+      <friction>
+        <torsional>
+          <coefficient>500</coefficient>
+          <use_patch_radius>true</use_patch_radius>
+          <patch_radius>0.0254</patch_radius>       
+        </torsional>
+        <ode>
+          <mu>1.00</mu>
+          <mu2>1.00</mu2>
+        </ode>
+      </friction>
+    </collision> 
+  </gazebo>
+  
+  <link name="Tractor_rear_driv_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+    </visual>
+  <collision>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="35"/>
+      <inertia ixx="2.45" ixy="0" ixz="0" iyy="2.45" iyz="0" izz="4.375"/>
+    </inertial>
+  </link>
+  <gazebo reference="Tractor_rear_driv_wheel">
+    <material>Gazebo/White</material>
+    <collision name="Tractor_rear_driv_wheel">
+      <friction>
+        <torsional>
+          <coefficient>500</coefficient>
+          <use_patch_radius>true</use_patch_radius>
+          <patch_radius>0.0254</patch_radius>       
+        </torsional>
+        <ode>
+          <mu>1.00</mu>
+          <mu2>1.00</mu2>
+        </ode>
+      </friction>
+    </collision> 
+  </gazebo>
+  
+  <link name="Tractor_rear_pass_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+    </visual>
+  <collision>
+      <origin rpy="1.5707 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.3" radius="0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="35"/>
+      <inertia ixx="2.45" ixy="0" ixz="0" iyy="2.45" iyz="0" izz="4.375"/>
+    </inertial>
+  </link>
+  <gazebo reference="Tractor_rear_pass_wheel">
+    <material>Gazebo/White</material>
+    <collision name="Tractor_rear_pass_wheel">
+      <friction>
+        <torsional>
+          <coefficient>500</coefficient>
+          <use_patch_radius>true</use_patch_radius>
+          <patch_radius>0.0254</patch_radius>       
+        </torsional>
+        <ode>
+          <mu>1.00</mu>
+          <mu2>1.00</mu2>
+        </ode>
+      </friction>
+    </collision> 
+  </gazebo>
+
+        
+        
+<!--                -->
+<!-- TRACTOR JOINTS -->
+<!--                -->
+  <joint name="Cab" type="fixed">
+    <parent link="Tractor_Body"/>
+    <child link="Tractor_Cab"/>
+    <limit effort="-1" velocity="0.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0.4"/>
+  </joint>
+  
+  <joint name="Body_Weight" type="fixed">
+    <parent link="Tractor_Body"/>
+    <child link="Tractor_Weighted_Base"/>
+    <limit effort="-1" velocity="0.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  
+  <joint name="Fifth_Wheel" type="revolute">
+    <parent link="Tractor_Body"/>
+    <child link="Trailer_Hitch"/>
+    <limit effort="1000000" lower="-1.57" upper="1.57" velocity="2000"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0.0 1 0.64"/>
+  </joint>
+  
+  <joint name="Front_Axle_Steer" type="revolute">
+    <parent link="Tractor_Body"/>
+    <child link="Front_Axle"/>
+    <limit effort="999999999999999" lower="-0.52" upper="0.52" velocity="300"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 -1 0.25"/>
+  </joint>
+  
+  <joint name="Tractor_front_driv_wheel_joint" type="continuous">
+    <parent link="Front_Axle"/>
+    <child link="Tractor_front_driv_wheel"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="1.15 0 0"/>
+  </joint>
+  
+
+  <joint name="Tractor_front_pass_wheel_joint" type="continuous">
+    <parent link="Front_Axle"/>
+    <child link="Tractor_front_pass_wheel"/>
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="-1.15 0 0"/>
+  </joint>
+
+  
+  <joint name="Tractor_rear_driv_wheel_joint" type="continuous">
+    <parent link="Tractor_Body"/>
+    <child link="Tractor_rear_driv_wheel"/>
+    <axis xyz="1 0 0"/>
+    <origin xyz="1.15 1 0.2575" rpy="0 0 0"/>
+  </joint>
+  
+  <joint name="Tractor_rear_pass_wheel_joint" type="continuous">
+    <parent link="Tractor_Body"/>
+    <child link="Tractor_rear_pass_wheel"/>
+    <axis xyz="1 0 0"/>
+    <origin xyz="-1.15 1 0.2575" rpy="0 0 0"/>
+  </joint>
+
+<!--                    -->
+<!-- GAZEBO AND CONTROL -->
+<!--                    -->
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/TractorTrailer_0</robotNamespace>
+    </plugin>
+  </gazebo>
+  
+  <transmission name="Driv_Wheel">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Tractor_front_driv_wheel_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Driv_Speed">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="Pass_Wheel">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Tractor_front_pass_wheel_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Pass_Speed">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="Axle_Steer_Tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Front_Axle_Steer">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Axle_Steer">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+</robot>

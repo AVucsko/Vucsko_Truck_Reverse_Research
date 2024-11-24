@@ -150,12 +150,6 @@ def sm_controller(dt):
     yaw_gain = 0.55
     k1x, qx = 0.4*lat_gain, 0.15*lat_gain
     k1y, qy = -0.4*yaw_gain, -0.4*yaw_gain
-
-
-    # I think we need to set this up so we have a sliding surface for lat error
-    # and a sliding surface for yaw error
-    # Then we have the PID articulation angle thing on top
-    # Maybe that could work?
     
     # Sliding surface - Lat Error
     sm.error_x = trailer.x
@@ -172,21 +166,13 @@ def sm_controller(dt):
     
     if sm.s_x < 0:
         sm.s_dot_x = qx
-    ##    #c = L2*q*-1/(v**2*l*math.cos(psi)*math.cos(error_theta))
     else:
         sm.s_dot_x = -qx
-    ##    #c = L2*q*1/(v**2*l*math.cos(psi)*math.cos(error_theta))
-##
+
     if sm.s_y < 0:
         sm.s_dot_y = qy
     else:
         sm.s_dot_y = -qy
-        
-    # Trying to move between modes
-    #if abs(error) < 1:
-    #    s_x = -s_x
-    #else:
-    #    s_x = s_x
     
     theta_x = -sm.s_x + -sm.s_dot_x
     theta_y = -sm.s_y + -sm.s_dot_y
@@ -194,9 +180,7 @@ def sm_controller(dt):
     sm.s_x_prev = sm.s_x
     sm.s_y_prev = sm.s_y
 
-    # Can we put another PID controller in to keep it close to zero error?
-    # Should we even need another PID controller or should the sliding mode handle it?
-    # Can I have variable gains?
+    # If close to zero error use a simpler control scheme
     if np.abs(tractor.x) < 0.2:
         theta = trailer.yaw
         

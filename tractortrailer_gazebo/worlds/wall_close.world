@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!--
+    <include>
+      <uri>model://gas_station</uri>
+      <name>gas_station</name>
+      <pose>-20.0 7.0 0 0 0 0</pose>
+    </include>
+    -->
+    
+    <include>
+      <uri>model://wall</uri>
+      <name>wall</name>
+      <pose>-3.0 0.0 0 0 0 0</pose>
+    </include>
+    
+    
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>0.1</real_time_factor>
+    </physics>
+  </world>
+</sdf>

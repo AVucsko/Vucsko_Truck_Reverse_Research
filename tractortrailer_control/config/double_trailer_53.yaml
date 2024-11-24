@@ -1,0 +1,31 @@
+double_trailer_53:
+  # Publish all joint states --------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  # Position Controllers ------------------------------------
+  Driv_velocity_controller:
+    type: effort_controllers/JointVelocityController
+    joint: Tractor_rear_driv_wheel_joint
+    pid: {p: 20.0, i: 0.01, d: 2.20}
+
+  Pass_velocity_controller:
+    type: effort_controllers/JointVelocityController
+    joint: Tractor_rear_pass_wheel_joint
+    pid: {p: 20.0, i: 0.01, d: 2.20}
+    
+  Axle_Steer_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: Front_Axle_Steer
+    pid: {p: 40000, i: 0.5, d: 50.20}
+    
+  Dolly_driv_velocity_controller:
+    type: effort_controllers/JointVelocityController
+    joint: Dolly_driv_wheel_joint
+    pid: {p: 20.0, i: 0.01, d: 2.20}
+    
+  Dolly_pass_velocity_controller:
+    type: effort_controllers/JointVelocityController
+    joint: Dolly_pass_wheel_joint
+    pid: {p: 20.0, i: 0.01, d: 2.20}

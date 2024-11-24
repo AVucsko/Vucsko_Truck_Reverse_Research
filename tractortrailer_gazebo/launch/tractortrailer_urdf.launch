@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find tractortrailer_gazebo)/worlds/tractortrailer.world"/>
+  </include>
+  
+  <!-- Spawn a robot into Gazebo -->
+  <!--
+  <node name="spawn_sdf" pkg="gazebo_ros" type="spawn_model"
+    args="-file $(find robots)/sdf/model.sdf -sdf -model tractortrailer_2 -z 0.25 -x 10"/>
+    -->
+    
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" 
+    args="-file $(find robots)/urdf/TractorTrailer_0.urdf -urdf -z 0.25 -y -50 -x 20 -model TractorTrailer_0" />
+
+</launch>

@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find tractortrailer_control)/config/tractortrailer_control.yaml" command="load"/>
+  <param name="robot_description" textfile="$(find robots)/urdf/TractorTrailer_0.urdf"/>
+  
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/TractorTrailer_0" args="Driv_velocity_controller Pass_velocity_controller Axle_Steer_position_controller joint_state_controller"/>
+    
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/TractorTrailer_0/joint_states" />
+  </node>
+  
+</launch>

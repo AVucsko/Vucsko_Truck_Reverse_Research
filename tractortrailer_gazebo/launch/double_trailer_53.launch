@@ -1,0 +1,27 @@
+<launch>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find tractortrailer_gazebo)/worlds/tractortrailer.world"/>
+  </include>
+  
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_sdf" pkg="gazebo_ros" type="spawn_model"
+    args="-file $(find robots)/sdf/Double_Trailer_53/model.sdf -sdf -model double_trailer_53 -z 0.25 -y -0 -x 0"/>
+
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find tractortrailer_control)/config/double_trailer_53.yaml" command="load"/>
+  <param name="robot_description" textfile="$(find robots)/urdf/double_trailer_53.urdf"/>
+  
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/double_trailer_53" args="Driv_velocity_controller Pass_velocity_controller Axle_Steer_position_controller Dolly_driv_velocity_controller Dolly_pass_velocity_controller joint_state_controller"/>
+    
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/double_trailer_53/joint_states" />
+  </node>
+  
+</launch>
